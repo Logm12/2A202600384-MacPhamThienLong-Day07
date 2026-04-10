@@ -1,7 +1,9 @@
 # Báo Cáo Lab 7: Embedding & Vector Store
 
 **Họ tên:** Mạc Phạm Thiên Long
+
 **Nhóm:** C401-E2
+
 **Ngày:** 10/04/2026
 
 ---
@@ -156,6 +158,14 @@ class DocumentStructureChunker:
 | Nguyễn Doãn Hiếu | RecursiveChunker | 8.0 | Chia chunk linh hoạt, kích thước vừa phải | Dễ cắt đứt nội dung của danh sách/phác đồ |
 | Cao Chí Hải | Semantic Chunking | 6.5 | Q2 precision=1.0; chunk=0.5 tạo 468 chunks coherent, giữ nguyên ý tốt với đoạn dài | Q3 fail hoàn toàn khi search≥0.5; `vi_retrieval_notes` át các file khác do cross-lingual gap | Dùng chunk=0.5 + search=0.4 + top_k=3; thêm metadata filter theo ngôn ngữ |
 | Phan Hoài Linh| Semantic Chunking | 7.0 | Giữ nguyên ý tưởng, phù hợp với đoạn dài|  Phụ thuộc vào chất lượng embedding |
+| Nguyễn Văn Đạt | Document-structure (custom) + OpenAI embeddings | 10.0 | 5/5 queries top-1 đúng expected_source (hit@5=1.00, MRR=1.00) | Chưa chứng minh hơn baseline (đang hòa); tốn chi phí/độ trễ do gọi API |
+| Bùi Hữu Huấn | Recursive Character Splitting | 6.7 / 10 | -Retrieval tốt với 2/3 query đạt tối đa (Amip, Alzheimer) <br><br>
+-Chunk giữ ngữ nghĩa khá ổn (avg ~319, không quá ngắn) <br><br>
+-Grounding rất tốt (3/3 câu trả lời đúng keyword <br><br>
+-Score distribution có phân tách rõ (spread ~0.2) | -Fail hoàn toàn 1 query (Áp xe gan → 0/2)  <br><br>
+-Metadata filter chưa hiệu quả (filter không trả kết quả) <br><br>
+-Chunk có khả năng bị cắt giữa câu (min length 25) <br><br>
+-Recall chưa ổn định giữa các domain |
 
 
 **Strategy nào tốt nhất cho domain này? Tại sao?**
